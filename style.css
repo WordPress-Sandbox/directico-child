@@ -1,0 +1,241 @@
+/*
+Theme Name: Directico Child
+Theme URI: http://projectbroccoli.com
+Author: Project Broccoli
+Author URI: http://projectbroccoli.com
+Description: Theme Child del sitio de Directico.
+Template: directico
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: directico-child
+Domain Path: /languages/
+Tags: light, white, red
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+
+Listable is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, Inc.
+Underscores is distributed under the terms of the GNU GPL v2 or later.
+*/
+
+/* ADD YOUR NEW CSS RULES HERE */
+
+/* This file assumes you wish to add new CSS rules that will overwrite the ones in the parent's CSS files
+If you wish however, you can copy the whole style.css file from the parent here and hack at it - see functions.php for more details.
+In that case please remember that you still need to retain the header above (replace the header of the parent style.css with the one above),
+specifically the 'Template: listable' line. */
+
+.page .entry-header.has-image:before {
+	opacity: 0.5;
+}
+.site-branding img {
+	max-height: 100% !important;
+	margin-top: 23px;
+}
+ul.primary-menu > .menu-item > a {
+	padding-top: 0;
+	text-transform: uppercase;
+}
+.lwa-login-link {
+	background: rgba(0, 0, 0, 0.5);
+	color: #ffffff !important;
+	padding: 9px 28px !important;
+	font-weight: 500 !important;
+	border: 1px solid #13adba;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+}
+.lwa-login-link:hover {
+	background: rgba(0, 0, 0, 0.6);
+}
+.add-listing-menu-item a {
+	background-color: #13adba;
+	color: #ffffff !important;
+	margin-left: 10px;
+	padding: 10px 28px !important;
+	font-weight: 500 !important;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+}
+.add-listing-menu-item a:hover {
+	background-color: #1f8992 !important;
+}
+.page-template-front_page .entry-header .header-content {
+	width: 566px;
+	padding: 0;
+}
+.search_jobs--frontpage.has--one-field .search-filter-wrapper {
+	-webkit-flex: 0 1 566px;
+	-ms-flex: 0 1 566px;
+	flex: 0 1 566px;
+}
+.job_search_form {
+	left: -1px;
+}
+.page-template-front_page .page-title {
+	font-size: 51px;
+	text-transform: uppercase;
+}
+.page-template-front_page .entry-subtitle.entry-subtitle {
+	font-size: 20.5px;
+}
+.search_jobs--frontpage .search-filter-wrapper:last-of-type .chosen-single {
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+}
+.page-template-front_page .search_jobs--frontpage .search-submit {
+	background-color: #13adba !important;
+	padding: 12px 37px;
+	font-size: 14.95px;
+	font-weight: 500 !important;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+}
+.page-template-front_page .search_jobs--frontpage .search-submit:hover {
+	background-color: #1f8992 !important;
+}
+.page-template-front_page .search_jobs--frontpage .search-submit .search-icon {
+	display: none;
+}
+.cta-text {
+	display: none;
+}
+.page-template-front_page .top-categories a {
+	background: rgba(19, 173, 186, 0.4);
+}
+.page-template-front_page .top-categories a:hover {
+	background: rgba(19, 173, 186, 0.3);
+}
+.front-page-section {
+	padding-top: 60px !important;
+}
+.widget_title {
+	text-transform: uppercase;
+}
+.widget_subtitle {
+	text-transform: none;
+}
+.page-template-default .site-branding img,
+.single .site-branding img {
+	width: 150px;
+	margin: 0;
+	padding: 15px 0;
+}
+.widget_listing_sidebar_gallery .listing-gallery__item {
+	-webkit-flex-basis: 25%;
+	flex-basis: 25%; 
+	-ms-flex-preferred-size: 25%;
+}
+.single-job_listing {
+	background-color: #ffffff !important;
+}
+.single-job_listing .entry-title {
+	text-transform: uppercase;
+}
+.single-categories-breadcrumb a {
+	text-transform: uppercase;
+}
+.single-categories-breadcrumb a:last-child {
+	color: #14adbb;
+}
+.single-job_listing .entry-header:before {
+	border-bottom: none;
+}
+a.listing-contact {
+	padding: 0.4375rem 0 0 10px;
+}
+.widget_listing_actions {
+	background-color: #f9f9f9;
+	margin: 0 -200px 0 -640px !important;
+	padding: 25px 0 !important;
+	border-top: 1px solid #ebebeb;
+	border-bottom: 1px solid #ebebeb;
+}
+.listing-sidebar--main .widget:not(.widget_listing_tags):not(.widget_listing_actions):not(.widget_listing_comments),
+.listing-sidebar--main .comment-respond {
+	padding: 0 !important;
+	border: none;
+}
+h2.comments-title {
+	background-color: #f9f9f9;
+	margin: 0 -200px 0 -725px !important;
+	padding: 25px 0 !important;
+	border-top: 1px solid #ebebeb;
+	border-bottom: 1px solid #ebebeb;
+	text-align: center;
+}
+.comment, .pingback {
+	border-top: none;
+	border-bottom: 1px solid #ebebeb !important;
+}
+.comment-respond .comment-reply-title {
+	color: #14adbb !important;
+	border-bottom: none;
+}
+.listing-sidebar--main .widget:not(.widget_listing_tags):not(.widget_listing_actions):not(.widget_listing_comments),
+.listing-sidebar--top .widget,
+.listing-sidebar--bottom,
+select, textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+input[type="submit"],
+.form-control,
+.select2-container .select2-choice {
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+.listing-map {
+	height: 300px !important;
+}
+.single-job_listing .nav-links {
+	display: none;
+}
+.single-rating {
+	display: inline-block;
+}
+.single-rating i {
+	float: left;
+}
+.listing-facebook-copy {
+	visibility: hidden;
+}
+.listing--facebook:before {
+	content: "&#xf09a;";
+}
+.listing--instagram:before {
+	content: "&#xf16d;";
+}
+.footer-widget-area {
+	background-color: #13adb9 !important;
+}
+.widget--footer {
+	padding: 1rem 0 !important;
+}
+.widget--footer [id*="social"] li.menu-item {
+	margin: 0 7px;
+}
+.primary-menu > ul .page_item_has_children:after,
+ul.primary-menu .menu-item-has-children:after {
+	top: 13px;
+}
+.primary-menu > ul .big-one.children, ul.primary-menu .big-one.sub-menu {
+	max-height: none;
+	overflow-y: visible;
+}
