@@ -6698,6 +6698,7 @@ if (!Date.now)
                     });
 
                     if (cardsWithLocation != 0) {
+
                         map.fitBounds(markers.getBounds(), {
                             padding: [50, 50]
                         });
@@ -6781,18 +6782,20 @@ if (!Date.now)
 
                 // markers.addLayer(m);
 
-                additionallocations.push({ 
-                    name: '', 
+                /* add live job count on job search */
+                var listingid = $item.data('listingid');
+                var listinglocations;
+                listinglocations = additionallocations[listingid] ? additionallocations[listingid] : [];
+                listinglocations.push({
+                    name: $item.find('.card__address').html(), 
                     geo_lat: $item.data('latitude'), 
                     geo_lng: $item.data('longitude') 
                 });
 
-                for(var a = 0; a < additionallocations.length; a++) {
-                    var locate = additionallocations[a];
+                for(var a = 0; a < listinglocations.length; a++) {
+                    var locate = listinglocations[a];
 
-                    console.log(locate.geo_lat, locate.geo_lng);
-
-                    m = L.marker([locate.geo_lat, locate.geo_lng], {
+                    var m = L.marker([locate.geo_lat, locate.geo_lng], {
                         icon: new CustomHtmlIcon({
                             html: iconHTML
                         })
@@ -6817,14 +6820,13 @@ if (!Date.now)
                             "<h3 class='popup__title'>" + $item.find('.card__title').html() + "</h3>" +
                             "<div class='popup__footer'>" +
                             ratingHTML +
-                            "<div class='popup__address'>" + $item.find('.card__address').html() + "</div>" +
+                            "<div class='popup__address'>" + locate.name + "</div>" +
                             "</div>" +
                             "</div>" +
                             "</a>").openPopup();
                     }
 
                     markers.addLayer(m);
-
                 }
 
                 return true;
@@ -7835,4 +7837,5 @@ if (!Date.now)
             $('.listing_category_description').show();
         }
     }
+
 })(jQuery);
