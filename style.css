@@ -25,6 +25,17 @@ If you wish however, you can copy the whole style.css file from the parent here 
 In that case please remember that you still need to retain the header above (replace the header of the parent style.css with the one above),
 specifically the 'Template: listable' line. */
 
+
+.addLocation {
+    background: #14ABB8;
+    width: 30%;
+    text-align: center;
+    color: #FFF;
+    padding: 5px;
+    cursor: pointer;
+}
+
+
 .page .entry-header.has-image:before {
 	opacity: 0.5;
 }
