@@ -156,28 +156,11 @@ function save_post_location($post_id, $values) {
 }
 
 
-/* get additional locations by ajax request */
-function get_additional_locations() {
-	$listingid = sanitize_text_field($_POST['listingid']);
-	$locations = get_post_meta($listingid, '_additionallocations', true);
-	$locations = $locations ? $locations : array(); 
-	echo json_encode($locations);
-	die();
-}
-add_action('wp_ajax_get_additional_locations', 'get_additional_locations');
-add_action('wp_ajax_nopriv_get_additional_locations', 'get_additional_locations');
-
-/* filter search results */
-function custom_job_manager_get_listings_result($result, $jobs) {
-	$posts_ids = wp_list_pluck($jobs->posts, 'ID');
-  $result['additionallocations'] = $posts_ids;
-  return $result;
-}
-//add_filter( 'job_manager_get_listings_result', 'custom_job_manager_get_listings_result',10,2 );
+/* localize available additional locations */
 
 function getMetaValue($result, $item) {
 	$locations = get_post_meta($item, '_additionallocations', true);
-	$result[$item] = $locations;
+	$result[$item] =  $locations;
 	return $result;
 }
 
@@ -188,7 +171,6 @@ function localize_data() {
 	wp_enqueue_script('listable-scripts');
 	$listings = get_posts("post_type=job_listing&posts_per_page=-1&post_status=publish");
 	$listingids = wp_list_pluck($listings, 'ID');
-
 	$additionallocations = array_filter(array_reduce($listingids, 'getMetaValue', array()));
 	wp_localize_script( 'listable-scripts', 'additionallocations', $additionallocations );
 }
