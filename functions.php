@@ -192,9 +192,7 @@ function localize_data() {
 function remove_calendar_widget() {
 	unregister_widget('Listing_Sidebar_Map_Widget');
 }
-
 add_action( 'widgets_init', 'remove_calendar_widget', 99 );
-
 
 /* register custom map widget */
 register_widget('Custom_Listing_Sidebar_Map_Widget');
@@ -282,71 +280,3 @@ class Custom_Listing_Sidebar_Map_Widget extends WP_Widget {
 		echo '<p>' . $this->widget_options['description'] . '</p>';
 	}
 } // class Custom_Listing_Sidebar_Map_Widget
-
-
-
-
-
-/* multi-location backend */
-
-if ( ! function_exists( 'remove_anonymous_object_filter' ) )
-{
-    /**
-     * Remove an anonymous object filter.
-     *
-     * @param  string $tag    Hook name.
-     * @param  string $class  Class name
-     * @param  string $method Method name
-     * @return void
-     */
-    function remove_anonymous_object_filter( $tag, $class, $method )
-    {
-        $filters = $GLOBALS['wp_filter'][ $tag ];
-
-        if ( empty ( $filters ) )
-        {
-            return;
-        }
-
-        foreach ( $filters as $priority => $filter )
-        {
-            foreach ( $filter as $identifier => $function )
-            {
-                if ( is_array( $function)
-                    and is_a( $function['function'][0], $class )
-                    and $method === $function['function'][1]
-                )
-                {
-                    remove_filter(
-                        $tag,
-                        array ( $function['function'][0], $method ),
-                        $priority
-                    );
-                }
-            }
-        }
-    }
-}
-
-// remove add_location_meta_boxes from wp-job-manager-extended-location
-//add_action( 'add_meta_boxes', 'remove_plugin_meta_box', 0 );
-function remove_plugin_meta_box()
-{
-    remove_anonymous_object_filter(
-        'add_meta_boxes',
-        'WPJMEL_Map_Setup',
-        'add_location_meta_boxes'
-    );
-}
-
-// add new meta boxes 
-function add_location_meta_boxes(){
-	add_meta_box(
-		$id         = 'wpjmel_location',
-		$title      = __( 'Job Location', 'wp-job-manager-extended-location' ),
-		$callback   = array( $this, 'job_listing_location_meta_box' ),
-		$screen     = array( 'job_listing' ),
-		$context    = 'normal',
-		$priority   = 'high'
-	);
-}
