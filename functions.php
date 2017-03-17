@@ -64,7 +64,21 @@ function listable_child_enqueue_styles() {
 
 add_action( 'wp_enqueue_scripts', 'listable_child_enqueue_styles' );
 
+// admin scripts 
+function admin_scripts_func() {
+	 	global $post;
+		wp_enqueue_script( 'admin-scripts',
+			get_stylesheet_directory_uri() . '/assets/js/admin-scripts.js',
+			array( 'jquery', 'mapify'),
+			'1.0.0', true );
+		// localize listing locations for admin
+		$additionallocations = get_post_meta($post->ID, '_additionallocations', true);
+		wp_localize_script( 'admin-scripts', 'additionallocations', $additionallocations );
 
+		wp_enqueue_style( 'admin-styles', get_stylesheet_directory_uri() . '/assets/css/admin-style.css');
+}
+
+add_action( 'admin_enqueue_scripts', 'admin_scripts_func' );
 
 
 
@@ -150,7 +164,6 @@ function save_post_location($post_id, $values) {
 
 	/* Job Listing Location */
 	if( 'job_listing' == $post_type && isset ( $_POST[ 'additionallocation' ] ) ){
-		// $additionallocations = isset ( $_POST[ 'additionallocation' ] ) ? sanitize_text_field( $_POST[ 'additionallocation' ]) : null;
 		update_post_meta( $post_id, '_additionallocations', $_POST[ 'additionallocation' ]);
 	}
 }
@@ -173,4 +186,167 @@ function localize_data() {
 	$listingids = wp_list_pluck($listings, 'ID');
 	$additionallocations = array_filter(array_reduce($listingids, 'getMetaValue', array()));
 	wp_localize_script( 'listable-scripts', 'additionallocations', $additionallocations );
+}
+
+/* remove map sidebar widget */
+function remove_calendar_widget() {
+	unregister_widget('Listing_Sidebar_Map_Widget');
+}
+
+add_action( 'widgets_init', 'remove_calendar_widget', 99 );
+
+
+/* register custom map widget */
+register_widget('Custom_Listing_Sidebar_Map_Widget');
+
+class Custom_Listing_Sidebar_Map_Widget extends WP_Widget {
+
+	function __construct() {
+		parent::__construct(
+			'listing_sidebar_map', // Base ID
+			'&#x1F536; ' . esc_html__( 'Listing', 'listable' ) . '  &raquo; ' . esc_html__( 'Location Map', 'listable' ), // Name
+			array( 'description' => esc_html__( 'A Map View of the listing location along with a Directions link to Google Map.', 'listable' ), ) // Args
+		);
+	}
+
+	public function widget( $args, $instance ) {
+		global $post;
+
+		$address = listable_get_formatted_address();
+
+		if ( empty( $address ) ) {
+			return;
+		}
+
+		$geolocation_lat  = get_post_meta( get_the_ID(), 'geolocation_lat', true );
+		$geolocation_long = get_post_meta( get_the_ID(), 'geolocation_long', true );
+
+		$get_directions_link = '';
+		if ( ! empty( $geolocation_lat ) && ! empty( $geolocation_long ) && is_numeric( $geolocation_lat ) && is_numeric( $geolocation_long ) ) {
+			$get_directions_link = '//maps.google.com/maps?daddr=' . $geolocation_lat . ',' . $geolocation_long;
+		}
+		
+		if ( empty( $get_directions_link ) ) {
+			return;
+		}
+		echo $args['before_widget']; ?>
+
+		<div class="listing-map-container" itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
+			<div id="map" class="listing-map"></div>
+
+			<?php if ( ! empty( $geolocation_lat ) && ! empty( $geolocation_long ) && is_numeric( $geolocation_lat ) && is_numeric( $geolocation_long ) ) : ?>
+
+				<meta itemprop="latitude" content="<?php echo $geolocation_lat; ?>"/>
+				<meta itemprop="longitude" content="<?php echo $geolocation_long; ?>"/>
+
+			<?php endif; ?>
+
+		</div>
+		<div class="listing-map-content">
+			<address class="listing-address" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+				<?php
+				echo '> ' . $address;
+				if ( true == apply_filters( 'listable_skip_geolocation_formatted_address', false ) ) { ?>
+					<meta itemprop="streetAddress" content="<?php echo trim( get_post_meta( $post->ID, 'geolocation_street_number', true ), '' ); ?> <?php echo trim( get_post_meta( $post->ID, 'geolocation_street', true ), '' ); ?>">
+					<meta itemprop="addressLocality" content="<?php echo trim( get_post_meta( $post->ID, 'geolocation_city', true ), '' ); ?>">
+					<meta itemprop="postalCode" content="<?php echo trim( get_post_meta( $post->ID, 'geolocation_postcode', true ), '' ); ?>">
+					<meta itemprop="addressRegion" content="<?php echo trim( get_post_meta( $post->ID, 'geolocation_state', true ), '' ); ?>">
+					<meta itemprop="addressCountry" content="<?php echo trim( get_post_meta( $post->ID, 'geolocation_country_short', true ), '' ); ?>">
+				<?php } ?>
+			</address>
+			<?php
+				$locations = get_post_meta( $post->ID, '_additionallocations', true); 
+				if (is_array($locations)) {
+					foreach ($locations as $key => $value) {
+						echo '> <span>' . $value['name'] . '</span><br>';
+					}
+				}
+			?>
+			<?php if ( ! empty( $get_directions_link ) ) { ?>
+				<a href="<?php echo $get_directions_link; ?>" class="listing-address-directions" target="_blank"><?php esc_html_e( 'Get directions', 'listable' ); ?></a>
+				<br>
+				<?php if( get_field('url_de_waze') ): ?>
+				<a href="<?php the_field('url_de_waze'); ?>" class="listing-address-directions" target="_blank">
+					<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/waze-icon01.png" />
+					Waze
+				</a>
+				<?php endif; ?>
+			<?php } ?>
+		</div><!-- .listing-map-content -->
+
+		<?php
+		echo $args['after_widget'];
+	}
+
+	public function form( $instance ) {
+		echo '<p>' . $this->widget_options['description'] . '</p>';
+	}
+} // class Custom_Listing_Sidebar_Map_Widget
+
+
+
+
+
+/* multi-location backend */
+
+if ( ! function_exists( 'remove_anonymous_object_filter' ) )
+{
+    /**
+     * Remove an anonymous object filter.
+     *
+     * @param  string $tag    Hook name.
+     * @param  string $class  Class name
+     * @param  string $method Method name
+     * @return void
+     */
+    function remove_anonymous_object_filter( $tag, $class, $method )
+    {
+        $filters = $GLOBALS['wp_filter'][ $tag ];
+
+        if ( empty ( $filters ) )
+        {
+            return;
+        }
+
+        foreach ( $filters as $priority => $filter )
+        {
+            foreach ( $filter as $identifier => $function )
+            {
+                if ( is_array( $function)
+                    and is_a( $function['function'][0], $class )
+                    and $method === $function['function'][1]
+                )
+                {
+                    remove_filter(
+                        $tag,
+                        array ( $function['function'][0], $method ),
+                        $priority
+                    );
+                }
+            }
+        }
+    }
+}
+
+// remove add_location_meta_boxes from wp-job-manager-extended-location
+//add_action( 'add_meta_boxes', 'remove_plugin_meta_box', 0 );
+function remove_plugin_meta_box()
+{
+    remove_anonymous_object_filter(
+        'add_meta_boxes',
+        'WPJMEL_Map_Setup',
+        'add_location_meta_boxes'
+    );
+}
+
+// add new meta boxes 
+function add_location_meta_boxes(){
+	add_meta_box(
+		$id         = 'wpjmel_location',
+		$title      = __( 'Job Location', 'wp-job-manager-extended-location' ),
+		$callback   = array( $this, 'job_listing_location_meta_box' ),
+		$screen     = array( 'job_listing' ),
+		$context    = 'normal',
+		$priority   = 'high'
+	);
 }
