@@ -4,3 +4,10 @@
 	color: #FFF;
 	padding: 5px;
 }*/
+
+p.remove_location {
+    float: right;
+    display: inline-block;
+    margin-top: -19px;
+    cursor: pointer;
+}

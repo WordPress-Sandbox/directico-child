@@ -38,6 +38,13 @@ specifically the 'Template: listable' line. */
 	margin: 0;
 	margin-top: 20px;
 }
+p.remove_location {
+    float: right;
+    display: inline-block;
+    margin-top: -35px;
+    cursor: pointer;
+}
+
 
 .page .entry-header.has-image:before {
 	opacity: 0.5;
