@@ -74,6 +74,11 @@ function admin_scripts_func() {
 		// localize listing locations for admin
 		$additionallocations = get_post_meta($post->ID, '_additionallocations', true);
 		wp_localize_script( 'admin-scripts', 'additionallocations', $additionallocations );
+		$options = array(
+				'lat'         => esc_attr( get_option( 'wpjmel_start_geo_lat', 40.712784 ) ),
+				'lng'         => esc_attr( get_option( 'wpjmel_start_geo_long', -74.005941 ) )
+			);
+		wp_localize_script( 'admin-scripts', 'latlng', $options );
 
 		wp_enqueue_style( 'admin-styles', get_stylesheet_directory_uri() . '/assets/css/admin-style.css');
 }
