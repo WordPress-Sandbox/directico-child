@@ -187,10 +187,13 @@ add_action( 'wp_enqueue_scripts', 'localize_data', 12 );
 function localize_data() {
 	wp_dequeue_script('listable-scripts');
 	wp_enqueue_script('listable-scripts');
-	$listings = get_posts("post_type=job_listing&posts_per_page=-1&post_status=publish");
-	$listingids = wp_list_pluck($listings, 'ID');
-	$additionallocations = array_filter(array_reduce($listingids, 'getMetaValue', array()));
-	wp_localize_script( 'listable-scripts', 'additionallocations', $additionallocations );
+	// we need to localize all data to make it work on explore page
+	if(is_page('explore')) {
+		$listings = get_posts("post_type=job_listing&posts_per_page=-1&post_status=publish");
+		$listingids = wp_list_pluck($listings, 'ID');
+		$additionallocations = array_filter(array_reduce($listingids, 'getMetaValue', array()));
+		wp_localize_script( 'listable-scripts', 'additionallocations', $additionallocations );
+	}
 }
 
 /* remove map sidebar widget */
@@ -232,7 +235,16 @@ class Custom_Listing_Sidebar_Map_Widget extends WP_Widget {
 		if ( empty( $get_directions_link ) ) {
 			return;
 		}
-		echo $args['before_widget']; ?>
+		echo $args['before_widget']; 
+
+		/* localize the listing location to show in preview and single location map */
+		$previewlocations = array(
+				$post->ID => get_post_meta($post->ID, '_additionallocations', true),
+		);
+		wp_localize_script( 'listable-scripts', 'additionallocations', $previewlocations );
+
+
+		?>
 
 		<div class="listing-map-container" itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
 			<div id="map" class="listing-map"></div>
