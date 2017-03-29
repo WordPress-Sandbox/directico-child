@@ -258,42 +258,55 @@ class Custom_Listing_Sidebar_Map_Widget extends WP_Widget {
 
 		</div>
 		<div class="listing-map-content">
-			<address class="listing-address" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-				<?php
-				echo '> ' . $address;
-				if ( true == apply_filters( 'listable_skip_geolocation_formatted_address', false ) ) { ?>
-					<meta itemprop="streetAddress" content="<?php echo trim( get_post_meta( $post->ID, 'geolocation_street_number', true ), '' ); ?> <?php echo trim( get_post_meta( $post->ID, 'geolocation_street', true ), '' ); ?>">
-					<meta itemprop="addressLocality" content="<?php echo trim( get_post_meta( $post->ID, 'geolocation_city', true ), '' ); ?>">
-					<meta itemprop="postalCode" content="<?php echo trim( get_post_meta( $post->ID, 'geolocation_postcode', true ), '' ); ?>">
-					<meta itemprop="addressRegion" content="<?php echo trim( get_post_meta( $post->ID, 'geolocation_state', true ), '' ); ?>">
-					<meta itemprop="addressCountry" content="<?php echo trim( get_post_meta( $post->ID, 'geolocation_country_short', true ), '' ); ?>">
-				<?php } ?>
-			</address>
+			<div class="address-container">
+				<address class="listing-address" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+					<?php
+					echo '' . $address;
+					if ( true == apply_filters( 'listable_skip_geolocation_formatted_address', false ) ) { ?>
+						<meta itemprop="streetAddress" content="<?php echo trim( get_post_meta( $post->ID, 'geolocation_street_number', true ), '' ); ?> <?php echo trim( get_post_meta( $post->ID, 'geolocation_street', true ), '' ); ?>">
+						<meta itemprop="addressLocality" content="<?php echo trim( get_post_meta( $post->ID, 'geolocation_city', true ), '' ); ?>">
+						<meta itemprop="postalCode" content="<?php echo trim( get_post_meta( $post->ID, 'geolocation_postcode', true ), '' ); ?>">
+						<meta itemprop="addressRegion" content="<?php echo trim( get_post_meta( $post->ID, 'geolocation_state', true ), '' ); ?>">
+						<meta itemprop="addressCountry" content="<?php echo trim( get_post_meta( $post->ID, 'geolocation_country_short', true ), '' ); ?>">
+					<?php } ?>
+				</address>
+				<a href="<?php echo $get_directions_link; ?>" class="listing-address-directions" target="_blank">
+					Cómo llegar
+				</a>
+				<br>
+				<a class="waze-desktop-link" href="https://www.waze.com/es/livemap?zoom=17&lat=<?php $key="geolocation_lat"; echo get_post_meta($post->ID, $key, true); ?>&lon=<?php $key="geolocation_long"; echo get_post_meta($post->ID, $key, true); ?>" class="listing-address-directions" target="_blank">
+					Waze
+				</a>
+				<a class="waze-mobile-link" href="waze://?ll=<?php $key="geolocation_lat"; echo get_post_meta($post->ID, $key, true); ?>,<?php $key="geolocation_long"; echo get_post_meta($post->ID, $key, true); ?>" class="listing-address-directions" target="_blank">
+					Waze
+				</a>
+			</div>
 			<?php
 				$locations = get_post_meta( $post->ID, '_additionallocations', true); 
 				if (is_array($locations)) {
 					foreach ($locations as $key => $value) {
-						echo '> <span>' . $value['name'] . '</span><br>';
+						echo '<div class="address-container">';
+						echo '<address class="listing-address">' . $value['name'] . '</address>';
+						echo '<a href="//maps.google.com/maps?daddr='.$value['geo_lat'].','.$value['geo_lng'].'" class="listing-address-directions" target="_blank">Cómo llegar</a>';
+						echo '<a class="waze-desktop-link" href="https://www.waze.com/es/livemap?zoom=17&lat='.$value['geo_lat'].'&lon='.$value['geo_lng'].'" class="listing-address-directions" target="_blank">
+							Waze
+						</a>
+						<a class="waze-mobile-link" href="waze://?ll='.$value['geo_lat'].','.$value['geo_lng'].'" class="listing-address-directions" target="_blank">
+							Waze
+						</a>';
+						echo '</div>';
 					}
 				}
 			?>
-			<?php if ( ! empty( $get_directions_link ) ) { ?>
-				<a href="<?php echo $get_directions_link; ?>" class="listing-address-directions" target="_blank"><?php esc_html_e( 'Get directions', 'listable' ); ?></a>
-				<br>
-				<?php if( get_field('url_de_waze') ): ?>
-				<a href="<?php the_field('url_de_waze'); ?>" class="listing-address-directions" target="_blank">
-					<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/waze-icon01.png" />
-					Waze
-				</a>
-				<?php endif; ?>
-			<?php } ?>
 		</div><!-- .listing-map-content -->
 
 		<?php
 		echo $args['after_widget'];
 	}
-
 	public function form( $instance ) {
 		echo '<p>' . $this->widget_options['description'] . '</p>';
 	}
 } // class Custom_Listing_Sidebar_Map_Widget
+
+// Remove location from jobs permalinks
+add_filter( 'submit_job_form_prefix_post_name_with_location', '__return_false' );

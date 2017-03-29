@@ -44,8 +44,9 @@ p.remove_location {
     margin-top: -35px;
     cursor: pointer;
 }
-
-
+.display-none1 {
+	display: none;
+}
 .page .entry-header.has-image:before {
 	opacity: 0.5;
 }
@@ -74,7 +75,7 @@ ul.primary-menu > .menu-item > a {
 	background-color: #13adba;
 	color: #ffffff !important;
 	margin-left: 10px;
-	padding: 10px 28px !important;
+	padding: 10px 20px 10px 28px !important;
 	font-weight: 500 !important;
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
@@ -87,39 +88,40 @@ ul.primary-menu > .menu-item > a {
 	width: 566px;
 	padding: 0;
 }
-.search_jobs--frontpage.has--one-field .search-filter-wrapper {
-	-webkit-flex: 0 1 566px;
-	-ms-flex: 0 1 566px;
-	flex: 0 1 566px;
-}
-.job_search_form {
-	left: -1px;
-}
 .page-template-front_page .page-title {
-	font-size: 51px;
+	font-size: 48px;
 	text-transform: uppercase;
 }
 .page-template-front_page .entry-subtitle.entry-subtitle {
 	font-size: 20.5px;
 }
-.search_jobs--frontpage .search-filter-wrapper:last-of-type .chosen-single {
-	-webkit-border-radius: 8px;
-	-moz-border-radius: 8px;
-	border-radius: 8px;
+.job_search_form {
+	left: -1px;
 }
-.page-template-front_page .search_jobs--frontpage .search-submit {
+.search_jobs--frontpage-facetwp .facetwp-type-search {
+	margin-right: 10px;
+	-webkit-flex: 0 1 385px;
+	-ms-flex: 0 1 385px;
+	flex: 0 1 385px;
+	-webkit-border-radius: 8px !important;
+	-moz-border-radius: 8px !important;
+	border-radius: 8px !important;
+}
+.page-template-front_page .search_jobs--frontpage-facetwp .search-submit {
 	background-color: #13adba !important;
 	padding: 12px 37px;
+	font-family: Poppins;
 	font-size: 14.95px;
 	font-weight: 500 !important;
-	-webkit-border-radius: 8px;
-	-moz-border-radius: 8px;
-	border-radius: 8px;
+	text-transform: uppercase;
+	-webkit-border-radius: 10px !important;
+	-moz-border-radius: 10px !important;
+	border-radius: 10px !important;
 }
-.page-template-front_page .search_jobs--frontpage .search-submit:hover {
+.page-template-front_page .search_jobs--frontpage-facetwp .search-submit:hover {
 	background-color: #1f8992 !important;
 }
-.page-template-front_page .search_jobs--frontpage .search-submit .search-icon {
+.page-template-front_page .search_jobs--frontpage-facetwp .search-submit .search-icon {
 	display: none;
 }
 .cta-text {
@@ -141,6 +143,8 @@ ul.primary-menu > .menu-item > a {
 	text-transform: none;
 }
 .page-template-default .site-branding img,
+.archive .site-branding img,
+.blog .site-branding img,
 .single .site-branding img {
 	width: 150px;
 	margin: 0;
@@ -157,6 +161,9 @@ ul.primary-menu > .menu-item > a {
 .single-job_listing .entry-title {
 	text-transform: uppercase;
 }
+.single-categories-breadcrumb {
+	margin: 40px 0;
+}
 .single-categories-breadcrumb a {
 	text-transform: uppercase;
 }
@@ -166,15 +173,52 @@ ul.primary-menu > .menu-item > a {
 .single-job_listing .entry-header:before {
 	border-bottom: none;
 }
+.single-meta {
+	padding: 15px 0;
+}
+.listing-map-content {
+	padding-top: 25px;
+}
+.listing-address,
+.listing-map-content a {
+	color: #484848 !important;
+	margin: 15px 0 !important;
+}
+.listing-map-content a:hover {
+	color: #14adbb !important;
+}
 a.listing-contact {
 	padding: 0.4375rem 0 0 10px;
 }
 .widget_listing_actions {
 	background-color: #f9f9f9;
-	margin: 0 -200px 0 -640px !important;
-	padding: 25px 0 !important;
+	margin-top: 0 !important;
+	margin-left: -6000px !important;
+	margin-right: -70px !important;
+	margin-bottom: 0 !important;
+	padding: 25px 75px 25px 0 !important;
+	text-align: right;
 	border-top: 1px solid #ebebeb;
 	border-bottom: 1px solid #ebebeb;
+}
+.single-action-buttons {
+	display: block;
+}
+.single-job_listing .action {
+	margin: 0 20px;
+}
+.action--favorite .lwa-login-link {
+	background: none;
+	padding: 0 !important;
+	color: #484848 !important;
+	font-weight: normal !important;
+	border: none;
+}
+.action--favorite .lwa-login-link:hover {
+	color: #14adbb !important;
+}
+.column-sidebar .listing-sidebar:first-child {
+	margin-top: 140px;
 }
 .listing-sidebar--main .widget:not(.widget_listing_tags):not(.widget_listing_actions):not(.widget_listing_comments),
 .listing-sidebar--main .comment-respond {
@@ -249,14 +293,504 @@ input[type="submit"],
 .widget--footer {
 	padding: 1rem 0 !important;
 }
+.footer-text-area {
+	padding: 1.8rem 0 !important;
+}
 .widget--footer [id*="social"] li.menu-item {
 	margin: 0 7px;
 }
 .primary-menu > ul .page_item_has_children:after,
-ul.primary-menu .menu-item-has-children:after {
-	top: 13px;
+ul.primary-menu > .menu-item-has-children:after {
+	top: 12px;
 }
 .primary-menu > ul .big-one.children, ul.primary-menu .big-one.sub-menu {
 	max-height: none;
 	overflow-y: visible;
+}
+.woocommerce-MyAccount-navigation,
+.geo-tag .location,
+.fieldset-job_location .field-description,
+.fieldset-company_website .description_tooltip,
+.fieldset-company_twitter {
+	display: none !important;
+}
+.uploader-btn .spacer .text {
+	font-size: 14px;
+}
+.waze-desktop-link {
+	display: block;
+}
+.waze-mobile-link {
+	display: none;
+}
+.how-it-works-widget .card {
+	background: none;
+	border: none;
+}
+.how-it-works-widget .card--post .card__content {
+	display: block;
+}
+.how-it-works-widget .card--post .card__title {
+	margin-bottom: 20px;
+	font-size: 19px;
+	font-weight: 500;
+}
+.how-it-works-widget .card__content {
+	color: #484c48;
+	font-size: 14px;
+}
+.how-it-works-widget .card--feature .card__content > img {
+	margin-bottom: 38px;
+}
+.tips-and-news-widget .grid__item--widget {
+	width: 25%;
+}
+.tips-and-news-widget .card__content {
+	padding: 29px 10px !important;
+}
+.tips-and-news-widget .card__title.card__title {
+	font-size: 16px;
+	font-weight: 500;
+	text-transform: uppercase;
+}
+.tips-and-news-widget .card__title.card__title a {
+	color: #484c48;
+}
+.tips-and-news-widget .card__title.card__title a:hover {
+	color: #13adba;
+}
+.tips-and-news-widget .card__meta {
+	font-size: 12px;
+	text-transform: uppercase;
+}
+.tips-and-news-widget .card__meta a {
+	color: #484c48;
+}
+.front-page-section:nth-child(1) .widget_title--frontpage,
+.front-page-section:nth-child(3) .widget_title--frontpage {
+	margin-bottom: 50px;
+}
+.front-page-section {
+	padding-bottom: 72px;
+}
+.front-page-section:nth-child(2) {
+	padding-bottom: 40px !important;
+}
+.widget_subtitle {
+	font-size: 16px;
+}
+.home .nav-links {
+	display: none;
+}
+.header--transparent ul.primary-menu > .menu-item > a:hover {
+	color: #13adba !important;
+}
+.header--transparent ul.primary-menu > .menu-item > .lwa-login-link:hover,
+.header--transparent ul.primary-menu > .add-listing-menu-item > a:hover {
+	color: #ffffff !important;
+}
+.page-template-front_page .top-categories a {
+	max-width: none;
+}
+ul.primary-menu .sub-menu {
+	top: 40px;
+}
+.site-footer {
+	background-color: #f6f6f6 !important;
+}
+.site-info {
+	color: #484c48 !important;
+	font-weight: 500;
+}
+.site-info a {
+    color: #14adbb !important;
+}
+.site-info a:hover {
+    text-decoration: underline;
+}
+.theme-info {
+	display: none;
+}
+.address-container {
+	border-bottom: 1px solid rgba(0, 0, 0, 0.075);
+}
+.lwa-modal h3 {
+	margin-bottom: 27px;
+}
+.lwa-form .wc-social-login:after {
+	content: "o" !important;
+}
+.lwa-form .wc-social-login .button-social-login {
+	font-size: 13px !important;
+	font-weight: 500 !important;
+	-webkit-border-radius: 8px !important;
+	-moz-border-radius: 8px !important;
+	border-radius: 8px !important;
+}
+.lwa-modal label {
+	font-size: 14px !important;
+	font-weight: normal !important;
+	text-transform: uppercase;
+}
+.lwa-modal .remember-me label,
+.lwa-login .lost-password a {
+	font-size: 12px !important;
+	text-transform: none;
+}
+.lwa-form .lwa-bottom-text {
+	margin-top: 5px !important;
+	font-size: 12px !important;
+	text-transform: none;
+	border: none !important;
+}
+.lwa-login .lost-password a:hover,
+.lwa-form .lwa-bottom-text a:hover {
+	text-decoration: underline;
+}
+.lwa-form .lwa-meta {
+	margin-bottom: 35px !important;
+	font-size: 12px !important;
+}
+.lwa-form button[type="submit"] {
+	background-color: #13acba !important;
+	font-weight: 500 !important;
+	text-transform: uppercase;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+}
+.lwa-form button[type="submit"]:hover {
+	background-color: #1f8992 !important;
+}
+.lwa-form .button-arrow:after {
+	display: none !important;
+}
+ul.categories--widget a {
+	padding: 25px 0;
+}
+ul.categories--widget a:hover {
+	opacity: .7;
+}
+.search-form .search-field::-webkit-input-placeholder,
+.search-form .search-field::-webkit-input-placeholder,
+.search-form .search-field::-webkit-input-placeholder {
+	color: #484c48 !important;
+	text-transform: uppercase;
+	opacity: 1 !important;
+}
+.search-form .search-field:-moz-placeholder,
+.search-form .search-field:-moz-placeholder,
+.search-form .search-field:-moz-placeholder {
+	color: #484c48 !important;
+	text-transform: uppercase;
+	opacity: 1 !important;
+}
+.search-form .search-field::-moz-placeholder,
+.search-form .search-field::-moz-placeholder,
+.search-form .search-field::-moz-placeholder {
+	color: #484c48 !important;
+	text-transform: uppercase;
+	opacity: 1 !important;
+}
+.search-form .search-field:-ms-input-placeholder,
+.search-form .search-field:-ms-input-placeholder,
+.search-form .search-field:-ms-input-placeholder {
+	color: #484c48 !important;
+	text-transform: uppercase;
+	opacity: 1 !important;
+}
+ul.primary-menu a {
+	color: #484c48 !important;
+}
+ul.primary-menu a:hover {
+	color: #13adba !important;
+}
+ul.primary-menu > .menu-item > .lwa-login-link,
+ul.primary-menu > .add-listing-menu-item > a,
+ul.primary-menu > .menu-item > .lwa-login-link:hover,
+ul.primary-menu > .add-listing-menu-item > a:hover {
+	color: #ffffff !important;
+}
+.claim-listing {
+	display: none;
+}
+ul.primary-menu {
+	margin-top: 27px;
+}
+/* ul.primary-menu:before { */
+    /* border-right: 1px solid rgba(0, 0, 0, 0.075); */
+    /* content: ""; */
+    /* height: 60px; */
+    /* position: absolute; */
+    /* top: 50%; */
+	/* left: 49%; */
+    /* -webkit-transform: translateY(-50%); */
+    /* -ms-transform: translateY(-50%); */
+    /* transform: translateY(-50%); */
+    /* width: 0; */
+    /* z-index: 1100; */
+/* } */
+.header--transparent ul.primary-menu {
+	margin-top: 0;
+}
+.header--transparent ul.primary-menu:before {
+    display: none;
+}
+ul.primary-menu > .menu-item:before {
+	border: none !important;
+}
+.site-header .search-form:before {
+	height: 90px !important;
+}
+.header-facet-wrapper .facetwp-facet:before {
+    height: 90px;
+}
+.header-facet-wrapper .facetwp-facet {
+	min-width: none;
+	max-width: none;
+	-webkit-flex: none;
+	-ms-flex: none;
+	flex: none;
+}
+.header-facet-wrapper .facetwp-type-search {
+	width: 170px;
+}
+.header-facet-wrapper #facetwp-location {
+	width: 270px;
+}
+.header-facet-wrapper .search-submit,
+.no-results .underlined-link,
+.no-results .clear-results-btn {
+	display: none;
+}
+.no-results h2 {
+	margin-top: 0;
+}
+.widget_listing_sidebar_claim_listing h2.widget_sidebar_title {
+	padding-bottom: 5px;
+	font-family: Poppins;
+	font-weight: normal;
+}
+.widget_listing_sidebar_claim_listing .lwa-login-link {
+	background: none;
+	padding: 0 !important;
+	color: #14adbb !important;
+	font-weight: 500 !important;
+	border: none;
+}
+.widget_listing_sidebar_claim_listing .lwa-login-link:hover {
+	color: #1f8992 !important;
+}
+.listing-address:before {
+	background: url(assets/img/directico_location_icon.svg) top center no-repeat;
+	content: "";
+	width: 21px;
+	padding: 0 30px 0 5px;
+}
+.listing-address-directions:before {
+	background: url(assets/img/directico_arrow_icon.svg) top center no-repeat;
+	color: transparent;
+	display: inline-block;
+	width: 21px;
+	margin-right: 0;
+	padding: 0 30px 0 5px;
+	transform: none;
+}
+.waze-desktop-link:before,
+.waze-mobile-link:before {
+	background: url(assets/img/directico_waze_icon.svg) top center no-repeat;
+	content: "";
+	width: 21px;
+	padding: 0 30px 0 5px;
+}
+.card__tags li:nth-child(3),
+.card__tags li:nth-child(4),
+.card__tags li:nth-child(5),
+.card__tags li:nth-child(6),
+.card__tags li:nth-child(7),
+.card__tags li:nth-child(8) {
+	display: none !important;
+}
+.page-template-front_page .cat__text {
+	overflow-x: visible;
+}
+.widget_listing_sidebar_categories .categories li {
+	display: inline;
+}
+.widget_listing_sidebar_categories a {
+	padding: 10px 0;
+}
+ul.primary-menu > .menu-item-current-username:after {
+	top: 22px;
+	right: 12px;
+}
+.entry-header center {
+	z-index: 9999;
+}
+.home .page .entry-content {
+	margin-bottom: 0;
+	padding-top: 0;
+}
+.card__image {
+	height: 300px;
+}
+@media screen and (max-width: 1024px) {
+	.header-facet-wrapper .facetwp-type-search {
+		width: 100px;
+	}
+	.header-facet-wrapper .facetwp-facet input,
+	ul.primary-menu a {
+		font-size: 11px !important;
+	}
+	ul.primary-menu {
+		margin-top: 34px;
+	}
+	.primary-menu > ul .page_item_has_children:after,
+	ul.primary-menu > .menu-item-has-children:after {
+		top: 9px;
+	}
+	ul.primary-menu > .menu-item-current-username:after {
+		top: 20px;
+	}
+	.add-listing-menu-item a {
+		padding: 10px 15px 10px 25px !important;
+	}
+}
+@media screen and (max-width: 768px) {
+	.widget_listing_actions {
+		padding-right: 100px !important;
+	}
+	ul.primary-menu a {
+		font-size: 14.95px !important;
+	}
+	.waze-desktop-link {
+		display: none;
+	}
+	.waze-mobile-link {
+		display: block;
+	}
+	.site-branding img {
+		margin-top: 40px;
+	}
+	.page-template-front_page .page-title {
+		margin-top: 50px;
+	}
+	.page-template-front_page .entry-header .header-content {
+		margin-bottom: 0;
+	}
+	.tips-and-news-widget .grid__item--widget {
+		width: 50%;
+	}
+	.search_jobs--frontpage.search_jobs {
+		margin-top: 50px;
+	}
+	.search_jobs--frontpage-facetwp .facetwp-type-search {
+		display: flex;
+		margin-right: 0;
+		-webkit-flex: 0 1 385px;
+		-ms-flex: 0 1 385px;
+		flex: 0 1 385px;
+	}
+	.page-template-front_page .search_jobs--frontpage-facetwp .search-submit {
+		width: auto;
+		flex: none;
+	}
+	.search_jobs--frontpage.has--one-field .search-submit span {
+		display: block;
+	}
+	.site-branding img {
+		margin: 0 auto !important;
+	}
+	.btn--filter span {
+		display: none;
+	}
+	.widget_listing_sidebar_map .listing-address-directions {
+		font-size: 0.875rem;
+	}
+	.column-sidebar .listing-sidebar:first-child {
+		margin-top: 0;
+	}
+	.widget_listing_sidebar_hours {
+		margin-top: 50px !important;
+	}
+	.listing-sidebar--bottom {
+		margin-bottom: 50px;
+	}
+	.single_job_listing .job_description {
+		padding: 0 60px;
+	}
+	.card__image {
+		height: 400px;
+	}
+	.add-listing-menu-item a {
+		margin-left: 0;
+	}
+}
+@media screen and (max-width: 767px) {
+	.widget_listing_actions {
+		padding-right: 75px !important;
+	}
+	.single_job_listing .job_description {
+		padding: 0 30px;
+	}
+	.page-template-front_page .entry-header .header-content {
+		margin-bottom: 100px;
+	}
+	.search_jobs--frontpage-facetwp .facetwp-type-search {
+		display: block;
+		flex: none;
+		margin-right: 0;
+	}
+	.page-template-front_page .top-categories {
+		position: static;
+		display: block;
+	}
+	.page-template-front_page .top-categories a {
+		width: 130px;
+	}
+	.page-template-front_page .top-categories a:nth-of-type(n+6) {
+		display: block;
+	}
+	.page-template-front_page .top-categories a:nth-child(3),
+	.page-template-front_page .top-categories a:nth-child(5),
+	.page-template-front_page .top-categories a:nth-child(7) {
+		clear: left;
+	}
+}
+@media screen and (max-width: 667px) {
+	.widget_listing_actions {
+		padding-right: 40px !important;
+	}
+}
+@media screen and (max-width: 568px) {
+	.widget_listing_actions {
+		padding-right: 35px !important;
+	}
+	.single-job_listing .action {
+		margin: 0 5px;
+	}
+}
+@media screen and (max-width: 414px) {
+	.tips-and-news-widget .grid__item--widget {
+		width: auto;
+	}
+	.widget_listing_actions {
+		padding-right: 103px !important;
+	}
+	.single-job_listing .action {
+		margin: 0 20px;
+	}
+}
+@media screen and (max-width: 375px) {
+	.widget_listing_actions {
+		padding-right: 80px !important;
+	}
+}
+@media screen and (max-width: 320px) {
+	.search_jobs--frontpage-facetwp .facetwp-type-search {
+		width: 50%;
+	}
+	.widget_listing_actions {
+		padding-right: 55px !important;
+	}
 }

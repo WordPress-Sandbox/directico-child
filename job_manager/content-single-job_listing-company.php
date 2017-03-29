@@ -14,7 +14,7 @@ $location = get_post_meta( get_the_ID(), '_job_location', true);
 $phone = get_post_meta( get_the_ID(), '_company_phone', true);
 $twitter = get_post_meta( get_the_ID(), '_company_twitter', true);
 ?>
-<div class="single-meta">
+<div style="padding-bottom: 0;" class="single-meta">
 	<?php
 	display_average_listing_rating();
 
@@ -37,7 +37,7 @@ $twitter = get_post_meta( get_the_ID(), '_company_twitter', true);
 		<?php endif; ?>
 	<?php } ?>
 </div>
-<div class="single-meta">
+<div style="padding-top: 0;" class="single-meta">
 	<?php if( get_field('perfil_de_facebook') ): ?>
 	<a class="listing-contact  listing--facebook" href="<?php the_field('url_de_facebook'); ?>" target="_blank" itemprop="url">/<?php the_field('perfil_de_facebook'); ?></a>
 	<?php endif; ?>
