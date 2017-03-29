@@ -170,6 +170,8 @@ function save_post_location($post_id, $values) {
 	/* Job Listing Location */
 	if( 'job_listing' == $post_type && isset ( $_POST[ 'additionallocation' ] ) ){
 		update_post_meta( $post_id, '_additionallocations', $_POST[ 'additionallocation' ]);
+	} else {
+		update_post_meta( $post_id, '_additionallocations', []);
 	}
 }
 
