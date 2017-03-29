@@ -188,7 +188,7 @@ function localize_data() {
 	wp_dequeue_script('listable-scripts');
 	wp_enqueue_script('listable-scripts');
 	// we need to localize all data to make it work on explore page
-	if(is_page('explore')) {
+	if(is_page('explore') || is_tax()) {
 		$listings = get_posts("post_type=job_listing&posts_per_page=-1&post_status=publish");
 		$listingids = wp_list_pluck($listings, 'ID');
 		$additionallocations = array_filter(array_reduce($listingids, 'getMetaValue', array()));
