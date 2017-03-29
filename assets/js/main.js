@@ -6786,14 +6786,18 @@ if (!Date.now)
                 var listingid = $item.data('listingid');
                 var listinglocations;
                 listinglocations = additionallocations[listingid] ? additionallocations[listingid] : [];
+                // convert Object to Array as data may be found in Object sometimes when listing map is updated backend.
+                if (Object.prototype.toString.call( listinglocations ) === '[object Object]' ) {
+                    listinglocations = $.map(listinglocations, function(el) { return el });
+                }
+
                 listinglocations.push({
                     name: $item.find('.card__address').html(), 
                     geo_lat: $item.data('latitude'), 
                     geo_lng: $item.data('longitude') 
                 });
 
-                for(var a = 0; a < listinglocations.length; a++) {
-                    var locate = listinglocations[a];
+                for (let locate of listinglocations) {
 
                     var m = L.marker([locate.geo_lat, locate.geo_lng], {
                         icon: new CustomHtmlIcon({
@@ -6828,6 +6832,43 @@ if (!Date.now)
 
                     markers.addLayer(m);
                 }
+
+                // for(var a = 0; a < listinglocations.length; a++) {
+                //     var locate = listinglocations[a];
+
+                //     var m = L.marker([locate.geo_lat, locate.geo_lng], {
+                //         icon: new CustomHtmlIcon({
+                //             html: iconHTML
+                //         })
+                //     });
+
+                //     if (typeof archive !== "undefined") {
+
+                //         $item.hover(function() {
+                //             $(m._icon).find('.pin').addClass('pin--selected');
+                //         }, function() {
+                //             $(m._icon).find('.pin').removeClass('pin--selected');
+                //         });
+
+                //         var rating = $item.find('.js-average-rating').text(),
+                //             ratingHTML = rating.length ? "<div class='popup__rating'><span>" + rating + "</span></div>" : "",
+                //             address = $item.find('.card__address').text();
+
+                //         m.bindPopup(
+                //             "<a class='popup' href='" + $item.data('permalink') + "'>" +
+                //             "<div class='popup__image' style='background-image: url(" + $item.data('img') + ");'></div>" +
+                //             "<div class='popup__content'>" +
+                //             "<h3 class='popup__title'>" + $item.find('.card__title').html() + "</h3>" +
+                //             "<div class='popup__footer'>" +
+                //             ratingHTML +
+                //             "<div class='popup__address'>" + locate.name + "</div>" +
+                //             "</div>" +
+                //             "</div>" +
+                //             "</a>").openPopup();
+                //     }
+
+                //     markers.addLayer(m);
+                // }
 
                 return true;
             }
