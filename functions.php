@@ -181,21 +181,21 @@ add_filter( 'submit_job_form_fields', 'custom_frontend_fields' );
 add_filter( 'job_manager_job_listing_data_fields', 'custom_backend_fields' );
 function custom_frontend_fields($fields) {
 	$fields['job']['fb_profile'] = array(
-		'label'       => __( 'Perfil de Facebook (optional)', 'job_manager' ),
+		'label'       => __( 'Perfil de Facebook', 'job_manager' ),
 		'type'        => 'text',
 		'required'    => false,
 		'placeholder' => 'directico',
 		'priority'    => 7
 	);	
 	$fields['job']['fb_url'] = array(
-		'label'       => __( 'URL de Facebook (optional)', 'job_manager' ),
+		'label'       => __( 'URL de Facebook', 'job_manager' ),
 		'type'        => 'text',
 		'required'    => false,
 		'placeholder' => 'directico',
 		'priority'    => 8
 	);	
 	$fields['job']['instagram'] = array(
-		'label'       => __( 'Usuario de Instagram (optional)', 'job_manager' ),
+		'label'       => __( 'Usuario de Instagram', 'job_manager' ),
 		'type'        => 'text',
 		'required'    => false,
 		'placeholder' => 'directico',
@@ -206,21 +206,21 @@ function custom_frontend_fields($fields) {
 
 function custom_backend_fields($fields){
 	$fields['_fb_profile'] = array(
-		'label'       => __( 'Perfil de Facebook (optional)', 'job_manager' ),
+		'label'       => __( 'Perfil de Facebook', 'job_manager' ),
 		'type'        => 'text',
 		'required'    => false,
 		'placeholder' => 'directico',
 		'priority'    => 7
 	);	
 	$fields['_fb_url'] = array(
-		'label'       => __( 'URL de Facebook (optional)', 'job_manager' ),
+		'label'       => __( 'URL de Facebook', 'job_manager' ),
 		'type'        => 'text',
 		'required'    => false,
 		'placeholder' => 'directico',
 		'priority'    => 8
 	);	
 	$fields['_instagram'] = array(
-		'label'       => __( 'Usuario de Instagram (optional)', 'job_manager' ),
+		'label'       => __( 'Usuario de Instagram', 'job_manager' ),
 		'type'        => 'text',
 		'required'    => false,
 		'placeholder' => 'directico/',
