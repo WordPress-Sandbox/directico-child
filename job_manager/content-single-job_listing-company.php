@@ -9,10 +9,12 @@
 
 global $post;
 // get our custom meta
-//$facebook_url = get_post_meta( get_the_ID(), '_company_facebook', true);
 $location = get_post_meta( get_the_ID(), '_job_location', true);
 $phone = get_post_meta( get_the_ID(), '_company_phone', true);
 $twitter = get_post_meta( get_the_ID(), '_company_twitter', true);
+$_fb_profile = get_post_meta( get_the_ID(), '_fb_profile', true);
+$_fb_url = get_post_meta( get_the_ID(), '_fb_url', true);
+$_instagram = get_post_meta( get_the_ID(), '_instagram', true);
 ?>
 <div style="padding-bottom: 0;" class="single-meta">
 	<?php
@@ -38,13 +40,13 @@ $twitter = get_post_meta( get_the_ID(), '_company_twitter', true);
 	<?php } ?>
 </div>
 <div style="padding-top: 0;" class="single-meta">
-	<?php if( get_field('perfil_de_facebook') ): ?>
-	<a class="listing-contact  listing--facebook" href="<?php the_field('url_de_facebook'); ?>" target="_blank" itemprop="url">/<?php the_field('perfil_de_facebook'); ?></a>
+	<?php if( $_fb_profile ): ?>
+	<a class="listing-contact  listing--facebook listing-facebook" href="https://facebook.com/<?php echo $_fb_profile; ?>" target="_blank" itemprop="url"><?php echo $_fb_profile; ?></a>
 	<?php endif; ?>
-	<?php if( get_field('usuario_de_instagram') ): ?>
-	<a class="listing-contact  listing--instagram" href="https://www.instagram.com/<?php the_field('usuario_de_instagram'); ?>" target="_blank" itemprop="url">/<?php the_field('usuario_de_instagram'); ?></a>
+	<?php if( $_fb_url ): ?>
+	<a class="listing-contact  listing--facebook" href="https://facebook.com/<?php echo $_fb_url; ?>" target="_blank" itemprop="url">/<?php echo $_fb_url; ?></a>
 	<?php endif; ?>
-	<?php if( get_field('perfil_de_facebook') ): ?>
-	<a class="listing-contact  listing--twitter listing-facebook-copy" href="#" target="_blank" itemprop="url">---</a>
+	<?php if( $_instagram ): ?>
+	<a class="listing-contact  listing--instagram" href="https://www.instagram.com/<?php echo $_instagram; ?>" target="_blank" itemprop="url">/<?php echo $_instagram; ?></a>
 	<?php endif; ?>
 </div>
