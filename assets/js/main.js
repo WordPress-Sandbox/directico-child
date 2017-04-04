@@ -6647,6 +6647,13 @@ if (!Date.now)
                         $(window).on('update:map', function() {
                             map.setView([$item.data('latitude'), $item.data('longitude')], zoom);
                         });
+
+                        /* fit all the markers within visible map single listing page */
+                        map.setView(markers.getBounds().getCenter());
+                        map.fitBounds(markers.getBounds(), {
+                            padding: [50, 50]
+                        });
+
                     } else {
                         $('#map').hide();
                         $('.listing-address').css('marginTop', 0);
@@ -6832,43 +6839,6 @@ if (!Date.now)
 
                     markers.addLayer(m);
                 }
-
-                // for(var a = 0; a < listinglocations.length; a++) {
-                //     var locate = listinglocations[a];
-
-                //     var m = L.marker([locate.geo_lat, locate.geo_lng], {
-                //         icon: new CustomHtmlIcon({
-                //             html: iconHTML
-                //         })
-                //     });
-
-                //     if (typeof archive !== "undefined") {
-
-                //         $item.hover(function() {
-                //             $(m._icon).find('.pin').addClass('pin--selected');
-                //         }, function() {
-                //             $(m._icon).find('.pin').removeClass('pin--selected');
-                //         });
-
-                //         var rating = $item.find('.js-average-rating').text(),
-                //             ratingHTML = rating.length ? "<div class='popup__rating'><span>" + rating + "</span></div>" : "",
-                //             address = $item.find('.card__address').text();
-
-                //         m.bindPopup(
-                //             "<a class='popup' href='" + $item.data('permalink') + "'>" +
-                //             "<div class='popup__image' style='background-image: url(" + $item.data('img') + ");'></div>" +
-                //             "<div class='popup__content'>" +
-                //             "<h3 class='popup__title'>" + $item.find('.card__title').html() + "</h3>" +
-                //             "<div class='popup__footer'>" +
-                //             ratingHTML +
-                //             "<div class='popup__address'>" + locate.name + "</div>" +
-                //             "</div>" +
-                //             "</div>" +
-                //             "</a>").openPopup();
-                //     }
-
-                //     markers.addLayer(m);
-                // }
 
                 return true;
             }

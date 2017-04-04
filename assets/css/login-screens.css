@@ -1,0 +1,52 @@
+
+body.login {
+	padding-top: 50px !important;
+}
+.login .message {
+	margin-bottom: 30px !important;
+}
+.login #login h1 {
+	position: static !important;
+}
+#login h1 {
+	border: none !important;
+}
+.login-action-login h1:before {
+	content: "Iniciar Sesión" !important;
+}
+.login form#loginform,
+.login form#registerform,
+.login form#lostpasswordform {
+	padding-top: 50px !important;
+}
+.login div#login_error {
+	position: static !important;
+}
+.login form#loginform input[type="submit"],
+.login form#registerform input[type="submit"],
+.login form#lostpasswordform input[type="submit"] {
+	background-color: #13adba !important;
+	color: #ffffff !important;
+	padding: 10px 28px 10px 28px !important;
+	font-weight: 500 !important;
+	-webkit-border-radius: 8px !important;
+	-moz-border-radius: 8px !important;
+	border-radius: 8px !important;
+}
+.login form#loginform input[type="submit"]:hover,
+.login form#registerform input[type="submit"]:hover,
+.login form#lostpasswordform input[type="submit"]:hover {
+	background-color: #1f8992 !important;
+}
+.login form#loginform .submit:after,
+.login form#registerform .submit:after,
+.login form#lostpasswordform .submit:after,
+.login-action-register .message {
+	display: none !important;
+}
+.login-action-register h1:before {
+	content: "Registrarse" !important;
+}
+.login-action-lostpassword h1::before {
+	content: "Recuperar contraseña" !important;
+}

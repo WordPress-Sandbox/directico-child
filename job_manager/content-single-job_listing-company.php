@@ -18,8 +18,11 @@ $_instagram = get_post_meta( get_the_ID(), '_instagram', true);
 ?>
 <div style="padding-bottom: 0;" class="single-meta">
 	<?php
-	display_average_listing_rating();
-
+		display_average_listing_rating();
+	?>
+</div>
+<div style="padding-top: 0;" class="single-meta">
+	<?php
 	if ( ! empty( $phone ) ) :
 		if ( strlen( $phone ) > 30 ) : ?>
 			<a class="listing-contact  listing--phone" href="tel:<?php echo $phone; ?>" itemprop="telephone"><?php esc_html_e( 'Phone', 'listable' ); ?></a>
@@ -38,15 +41,21 @@ $_instagram = get_post_meta( get_the_ID(), '_instagram', true);
 			<a class="listing-contact  listing--website" href="<?php echo esc_url( $website ); ?>" itemprop="url" target="_blank" rel="nofollow"><?php echo $website_pure; ?></a>
 		<?php endif; ?>
 	<?php } ?>
-</div>
-<div style="padding-top: 0;" class="single-meta">
 	<?php if( $_fb_profile ): ?>
-	<a class="listing-contact  listing--facebook listing-facebook" href="https://facebook.com/<?php echo $_fb_profile; ?>" target="_blank" itemprop="url"><?php echo $_fb_profile; ?></a>
-	<?php endif; ?>
-	<?php if( $_fb_url ): ?>
-	<a class="listing-contact  listing--facebook" href="https://facebook.com/<?php echo $_fb_url; ?>" target="_blank" itemprop="url">/<?php echo $_fb_url; ?></a>
+		<a class="listing-contact listing--facebook listing-facebook"
+		href="<?php if( $_fb_url ) { echo $_fb_url; } ?>"
+		target="_blank" itemprop="url">
+			<?php echo $_fb_profile; ?>
+		</a>
 	<?php endif; ?>
 	<?php if( $_instagram ): ?>
-	<a class="listing-contact  listing--instagram" href="https://www.instagram.com/<?php echo $_instagram; ?>" target="_blank" itemprop="url">/<?php echo $_instagram; ?></a>
+		<a class="listing-contact listing--instagram" href="https://www.instagram.com/<?php echo $_instagram; ?>" target="_blank" itemprop="url">
+			/<?php echo $_instagram; ?>
+		</a>
+	<?php endif; ?>
+	<?php if( $_fb_profile ): ?>
+		<a class="listing-contact listing--twitter listing-facebook-copy" href="#" target="_blank" itemprop="url">
+			---
+		</a>
 	<?php endif; ?>
 </div>

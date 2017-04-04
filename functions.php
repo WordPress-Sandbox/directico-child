@@ -85,7 +85,12 @@ function admin_scripts_func() {
 
 add_action( 'admin_enqueue_scripts', 'admin_scripts_func' );
 
+function listable_enqueue_login_js() {
+	wp_enqueue_script( 'login-screens-js', get_stylesheet_directory_uri() . '/assets/js/login-screens.js', false );
+	wp_enqueue_style( 'login-screens-css', get_stylesheet_directory_uri() . '/assets/css/login-screens.css');
+}
 
+add_action( 'login_enqueue_scripts', 'listable_enqueue_login_js', 1 );
 
 /**
  *
@@ -365,3 +370,25 @@ class Custom_Listing_Sidebar_Map_Widget extends WP_Widget {
 
 // Remove location from jobs permalinks
 add_filter( 'submit_job_form_prefix_post_name_with_location', '__return_false' );
+
+add_filter('show_admin_bar', '__return_false');
+
+add_action( 'woocommerce_save_account_details', 'acf_form_head', 20 );
+
+function my_woocommerce_edit_account_form() {
+	?>
+	<fieldset>
+		<?php
+		if( current_user_can('upload_files') ) {
+			acf_form( array(
+				'post_id' => 'user_' . get_current_user_id(),
+				'form'    => false,
+				'field_groups' => array(12621),
+				'return' => false,
+			) );
+		}
+		?>
+	</fieldset>
+	<?php
+}
+add_action( 'woocommerce_edit_account_form', 'my_woocommerce_edit_account_form' );

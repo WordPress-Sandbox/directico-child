@@ -1,5 +1,5 @@
 /*
-Theme Name: Directico Childdsfds
+Theme Name: Directico Child
 Theme URI: http://projectbroccoli.com
 Author: Project Broccoli
 Author URI: http://projectbroccoli.com
@@ -27,12 +27,18 @@ specifically the 'Template: listable' line. */
 
 
 .addLocation {
-    background: #14ABB8;
-    width: 30%;
-    text-align: center;
-    color: #FFF;
-    padding: 5px;
-    cursor: pointer;
+	display: inline-block;
+	background-color: #13adba;
+	color: #ffffff !important;
+	padding: 10px 20px 10px 28px !important;
+	font-weight: 500 !important;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	cursor: pointer;
+}
+.addLocation:hover {
+	background-color: #1f8992 !important;
 }
 .listing-address {
 	margin: 0;
@@ -225,7 +231,7 @@ a.listing-contact {
 	padding: 0 !important;
 	border: none;
 }
-h2.comments-title {
+.single-job_listing h2.comments-title {
 	background-color: #f9f9f9;
 	margin: 0 -200px 0 -725px !important;
 	padding: 25px 0 !important;
@@ -277,6 +283,12 @@ input[type="submit"],
 }
 .single-rating i {
 	float: left;
+}
+.single a.listing-contact:before {
+	color: #14adbb;
+}
+.single .listing--phone {
+	padding-left: 0;
 }
 .listing-facebook-copy {
 	visibility: hidden;
@@ -348,23 +360,39 @@ ul.primary-menu > .menu-item-has-children:after {
 .tips-and-news-widget .card__content {
 	padding: 29px 10px !important;
 }
-.tips-and-news-widget .card__title.card__title {
+.tips-and-news-widget .card__title.card__title,
+.blog .postcard .card__title.card__title {
 	font-size: 16px;
 	font-weight: 500;
 	text-transform: uppercase;
 }
-.tips-and-news-widget .card__title.card__title a {
+.tips-and-news-widget .card__title.card__title a,
+.blog .postcard .card__title.card__title a {
 	color: #484c48;
 }
-.tips-and-news-widget .card__title.card__title a:hover {
+.tips-and-news-widget .card__title.card__title a:hover,
+.blog .postcard .card__title.card__title a:hover {
 	color: #13adba;
 }
-.tips-and-news-widget .card__meta {
-	font-size: 12px;
+.tips-and-news-widget .card__meta,
+.blog .postcard .card__meta {
+	font-size: 12px !important;
 	text-transform: uppercase;
 }
-.tips-and-news-widget .card__meta a {
+.single-post .entry-meta span,
+.single-post .entry-meta a {
+	font-size: 15px;
+	font-weight: normal !important;
+	text-transform: uppercase;
+}
+.tips-and-news-widget .card__meta a,
+.blog .postcard .card__meta a,
+.single-post .entry-meta a {
 	color: #484c48;
+}
+.blog .postcard .card__meta a:hover,
+.single-post .entry-meta a:hover {
+	color: #13adba !important;
 }
 .front-page-section:nth-child(1) .widget_title--frontpage,
 .front-page-section:nth-child(3) .widget_title--frontpage {
@@ -571,6 +599,7 @@ ul.primary-menu > .menu-item:before {
 	font-family: Poppins;
 	font-weight: normal;
 }
+.account-sign-in .lwa-login-link,
 .widget_listing_sidebar_claim_listing .lwa-login-link {
 	background: none;
 	padding: 0 !important;
@@ -578,6 +607,7 @@ ul.primary-menu > .menu-item:before {
 	font-weight: 500 !important;
 	border: none;
 }
+.account-sign-in .lwa-login-link:hover,
 .widget_listing_sidebar_claim_listing .lwa-login-link:hover {
 	color: #1f8992 !important;
 }
@@ -625,16 +655,164 @@ ul.primary-menu > .menu-item-current-username:after {
 	right: 12px;
 }
 .entry-header center {
-	z-index: 9999;
+	z-index: 30;
 }
 .home .page .entry-content {
 	margin-bottom: 0;
 	padding-top: 0;
 }
+.home .card__image {
+	height: auto;
+}
 .card__image {
 	height: 300px;
 }
+.page-header.has-featured-image {
+	box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.45);
+}
+.page-id-91 .page-header-background,
+.blog .page-header-background {
+	background-image: none !important;
+	background-color: #ebebeb !important;
+	opacity: 1 !important;
+}
+.page-header.has-featured-image .page-title,
+.single-post .entry-title {
+	color: #484c48 !important;
+	font-size: 42px;
+	text-transform: uppercase;
+}
+.page-header.has-featured-image .entry-subtitle {
+	color: #484c48 !important;
+}
+.page-id-11042 .page-header.has-featured-image .page-title {
+	color: #ffffff !important;
+}
+.page-id-11042 .page-header.has-featured-image .entry-subtitle {
+	color: #ffffff !important;
+}
+.page-header.has-featured-image .category-list a {
+	color: #484c48;
+}
+.page-header.has-featured-image .category-list li:after {
+	color: #484c48;
+}
+.card--post.sticky {
+	box-shadow: none;
+}
+.blog .postcard .card a {
+	display: inline-block;
+	flex-grow: 0;
+}
+.single-post .share-linkedin,
+.single-post .share-email {
+	display: none;
+}
+.single:not(.single-job_listing) .entry-content div.sharedaddy {
+    margin: 50px 0 20px 0;
+}
+.single-post div.sd-social.sd-social .sd-title,
+.single-post div.sd-social.sd-social .sd-content {
+	display: inline-block;
+}
+.single-post div.sd-social.sd-social .sd-title {
+	color: #5d5c5c;
+	margin-right: 30px;
+	font-size: 1.125rem;
+	font-weight: 500;
+}
+div.sharedaddy h3.sd-title.sd-title:before {
+	display: inline-block !important;
+}
+div.sharedaddy h3.sd-title:before {
+	background: url(assets/img/share-icon01.png) top center no-repeat;
+	width: 18px !important;
+	height: 20px;
+	margin: 0 5px -5px 0 !important;
+	border-top: none !important;
+}
+div.sd-social.sd-social > div.sd-content.sd-content ul li > a span {
+	font-weight: normal;
+	text-transform: none;
+}
+.single:not(.single-job_listing) .entry-content div.sharedaddy div.sd-social.sd-social > div.sd-content.sd-content ul li > a {
+	border: 1px solid #14adbb;
+}
+.header-content .sd-title {
+	display: none !important;
+}
+.single-post .post-navigation {
+	display: none;
+}
+.single-post h2.comments-title {
+	color: #14adbb;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.075);
+}
+.job_listing_packages {
+	border: none !important;
+}
+.page-package-selection .hentry.hentry,
+.page-add-listing .entry-content {
+	background: #f9f9f9 !important;
+}
+.featured-label {
+	font-weight: 500;
+}
+.package__title.package__title {
+	color: #484c48 !important;
+	font-size: 18px;
+}
+.package__price {
+	color: #484c48 !important;
+	font-size: 40px;
+	text-transform: uppercase;
+}
+.package__btn.package__btn {
+	padding: 4px 30px;
+	font-weight: 500;
+	border: 2px solid #13adba;
+	text-transform: uppercase;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+}
+.package__btn.package__btn:after {
+	display: none;
+}
+.package__btn.package__btn:hover,
+.package__btn.package__btn:focus,
+.package--labeled .package__btn.package__btn:hover,
+.package--labeled .package__btn.package__btn:focus {
+    background-color: #1f8992 !important;
+	color: #ffffff !important;
+	border-color: #1f8992 !important;
+}
+.menu-trigger svg {
+	color: #000000;
+}
+.page-job-dashboard .entry-content {
+	margin-top: 0;
+}
+.page-add-listing .fieldset-job_location .geo-tag {
+	margin-top: 23px;
+}
+.menu-trigger {
+	top: 20px;
+	left: 10px;
+}
+.single .logged-in-as {
+	display: none;
+}
+.woocommerce-edit-account .entry-content form .hndle {
+	display: none !important;
+}
 @media screen and (max-width: 1024px) {
+	.widget_listing_actions {
+		padding-right: 70px !important;
+	}
+	.single-job_listing .action {
+		margin: 0 5px !important;
+	}
 	.header-facet-wrapper .facetwp-type-search {
 		width: 100px;
 	}
@@ -658,7 +836,10 @@ ul.primary-menu > .menu-item-current-username:after {
 }
 @media screen and (max-width: 768px) {
 	.widget_listing_actions {
-		padding-right: 100px !important;
+		padding-right: 110px !important;
+	}
+	.single-job_listing .action {
+		margin: 0 10px !important;
 	}
 	ul.primary-menu a {
 		font-size: 14.95px !important;
@@ -670,10 +851,10 @@ ul.primary-menu > .menu-item-current-username:after {
 		display: block;
 	}
 	.site-branding img {
-		margin-top: 40px;
+		margin: 40px auto 0 auto !important;
 	}
 	.page-template-front_page .page-title {
-		margin-top: 50px;
+		margin-top: 100px;
 	}
 	.page-template-front_page .entry-header .header-content {
 		margin-bottom: 0;
@@ -697,9 +878,6 @@ ul.primary-menu > .menu-item-current-username:after {
 	}
 	.search_jobs--frontpage.has--one-field .search-submit span {
 		display: block;
-	}
-	.site-branding img {
-		margin: 0 auto !important;
 	}
 	.btn--filter span {
 		display: none;
@@ -775,7 +953,7 @@ ul.primary-menu > .menu-item-current-username:after {
 		width: auto;
 	}
 	.widget_listing_actions {
-		padding-right: 103px !important;
+		padding-right: 124px !important;
 	}
 	.single-job_listing .action {
 		margin: 0 20px;
@@ -786,11 +964,13 @@ ul.primary-menu > .menu-item-current-username:after {
 		padding-right: 80px !important;
 	}
 }
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 360px) {
 	.search_jobs--frontpage-facetwp .facetwp-type-search {
 		width: 50%;
 	}
 	.widget_listing_actions {
 		padding-right: 55px !important;
 	}
+}
+@media screen and (max-width: 320px) {
 }
