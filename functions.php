@@ -60,6 +60,7 @@ function listable_child_enqueue_styles() {
 			get_stylesheet_directory_uri() . '/assets/js/scripts.js',
 			array( 'jquery'),
 			'1.0.0', true );
+	// wp_add_inline_script( 'child-scripts', 'L_DISABLE_3D = true;' );
 }
 
 add_action( 'wp_enqueue_scripts', 'listable_child_enqueue_styles' );

@@ -21,7 +21,7 @@ $_instagram = get_post_meta( get_the_ID(), '_instagram', true);
 		display_average_listing_rating();
 	?>
 </div>
-<div style="padding-top: 0;" class="single-meta">
+<div style="padding: 0 0 36px 0;" class="single-meta">
 	<?php
 	if ( ! empty( $phone ) ) :
 		if ( strlen( $phone ) > 30 ) : ?>
@@ -51,11 +51,6 @@ $_instagram = get_post_meta( get_the_ID(), '_instagram', true);
 	<?php if( $_instagram ): ?>
 		<a class="listing-contact listing--instagram" href="https://www.instagram.com/<?php echo $_instagram; ?>" target="_blank" itemprop="url">
 			/<?php echo $_instagram; ?>
-		</a>
-	<?php endif; ?>
-	<?php if( $_fb_profile ): ?>
-		<a class="listing-contact listing--twitter listing-facebook-copy" href="#" target="_blank" itemprop="url">
-			---
 		</a>
 	<?php endif; ?>
 </div>

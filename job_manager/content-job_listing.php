@@ -47,6 +47,9 @@ if ( class_exists( 'WP_Job_Manager_Claim_Listing' ) ) {
 if ( true === $listing_is_featured ) $listing_classes .= '  is--featured';
 
 $listing_classes = apply_filters( 'listable_listing_archive_classes', $listing_classes, $post ); ?>
+<?php
+	// if ( true === $listing_is_claimed ) :
+?>
 <div class="grid__item">
     <article class="<?php echo esc_attr( $listing_classes ); ?>" itemscope itemtype="http://schema.org/LocalBusiness"
              data-latitude="<?php echo esc_attr( get_post_meta( $post->ID, 'geolocation_lat', true ) ); ?>"
@@ -125,4 +128,6 @@ $listing_classes = apply_filters( 'listable_listing_archive_classes', $listing_c
         </a>
     </article><!-- .card.card--listing -->
 </div><!-- .grid__item -->
-
+<?php
+	// endif;
+?>

@@ -46,17 +46,14 @@
 					?>
 					</div>
 					<button class="btn package__btn" type="submit" name="job_package" value="user-<?php echo $key; ?>" id="package-<?php echo $product->id; ?>">
-						<?php _e('Get Started', 'listable') ?>
+						<?php _e('New Listing', 'listable') ?>
 					</button>
 				</div>
 			<?php endforeach; ?>
 		</div>
 	<?php endif; ?>
 	<?php if ( $packages ) : ?>
-		<?php if ( $user_packages ) : ?>
-			<h2 class="package-list__title"><?php _e( "Purchase packages", "listable" ); ?></h2>
-		<?php endif; ?>
-		<div class="package-list">
+		<div class="package-list general-packages">
 			<?php foreach ( $packages as $key => $package ) :
 				$product = wc_get_product( $package );
 				if ( ! $product->is_type( array( 'job_package', 'job_package_subscription' ) ) || ! $product->is_purchasable() ) {
@@ -85,10 +82,10 @@
 					</div>
 					<?php
 						if( $product->id == 210 ) {
-							echo '<em>₡49,995 / año</em>';
+							echo '<em>₡99,995 / año</em>';
 						}
 						if( $product->id == 215 ) {
-							echo '<em>₡99,995 / año</em>';
+							echo '<em>₡49,995 / año</em>';
 						}
 					?>
 					<div class="package__description">
@@ -97,9 +94,19 @@
 					<div class="package__content">
 						<?php echo apply_filters( 'the_content', $product->post->post_content ) ?>
 					</div>
-					<button class="btn package__btn" type="submit" name="job_package" value="<?php echo $product->id; ?>" id="package-<?php echo $product->id; ?>">
-						<?php _e('Get Started', 'listable') ?>
-					</button>
+					<?php
+						if( $product->id == 213 ) {
+							echo '<button class="btn package__btn" type="submit" name="job_package" value="213" id="package-213">COMENZAR</button>';
+						}
+						if( $product->id == 210 ) {
+							echo '<button class="btn package__btn" type="submit" name="job_package" value="210" id="package-210">MENSUAL</button>';
+							echo '<button class="btn package__btn" type="submit" name="job_package" value="12956" id="package-12956">ANUAL</button>';
+						}
+						if( $product->id == 215 ) {
+							echo '<button class="btn package__btn" type="submit" name="job_package" value="215" id="package-215">MENSUAL</button>';
+							echo '<button class="btn package__btn" type="submit" name="job_package" value="12955" id="package-12955">ANUAL</button>';
+						}
+					?>
 				</div>
 			<?php endforeach; ?>
 		</div>
