@@ -60,6 +60,10 @@ function listable_child_enqueue_styles() {
 			get_stylesheet_directory_uri() . '/assets/js/scripts.js',
 			array( 'jquery'),
 			'1.0.0', true );
+
+	// localize listing locations for admin
+	$additionallocations = get_post_meta($_GET['job_id'], '_additionallocations', true);
+	wp_localize_script( 'child-scripts', 'additionallocations', $additionallocations );
 	// wp_add_inline_script( 'child-scripts', 'L_DISABLE_3D = true;' );
 }
 
@@ -173,6 +177,8 @@ add_action( 'wpjm_events_update_event_data', 'save_post_location', 26, 2 );
 function save_post_location($post_id, $values) {
 	$post_type = get_post_type( $post_id );
 
+	update_option('testlocations', $_POST['additionallocation']);
+
 	/* Job Listing Location */
 	if( 'job_listing' == $post_type && isset ( $_POST[ 'additionallocation' ] ) ){
 		update_post_meta( $post_id, '_additionallocations', $_POST[ 'additionallocation' ]);
@@ -182,7 +188,7 @@ function save_post_location($post_id, $values) {
 }
 
 
-/* add new fields to registration form */
+/* add new fields to job form */
 add_filter( 'submit_job_form_fields', 'custom_frontend_fields' );
 add_filter( 'job_manager_job_listing_data_fields', 'custom_backend_fields' );
 function custom_frontend_fields($fields) {
