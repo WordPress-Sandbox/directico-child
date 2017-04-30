@@ -252,7 +252,9 @@ function redirect_users_to_dashboard($post_id, $values) {
 	$dash = get_option('job_manager_job_dashboard_page_id');
 	if($status !== 'preview') {
 		echo '<script>
-		window.location = "' . get_permalink($dash) . '";
+		setTimeout(function(){
+			window.location = "' . get_permalink($dash) . '";
+		}, 4000);
 		</script>';
 	}
 }
