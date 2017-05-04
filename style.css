@@ -25,6 +25,9 @@ If you wish however, you can copy the whole style.css file from the parent here 
 In that case please remember that you still need to retain the header above (replace the header of the parent style.css with the one above),
 specifically the 'Template: listable' line. */
 
+form#submit-job-form {
+    margin-top: 100px;
+}
 
 .addLocation {
 	display: inline-block;
