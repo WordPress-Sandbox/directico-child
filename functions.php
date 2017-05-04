@@ -245,7 +245,7 @@ function custom_backend_fields($fields){
 
 /* redirect after job post / update */
 // add_action('job_manager_save_job_listing', 'redirect_users_to_dashboard', 99, 2);
-add_action('job_manager_update_job_data', 'redirect_users_to_dashboard', 99, 2);
+// add_action('job_manager_update_job_data', 'redirect_users_to_dashboard', 99, 2);
 
 function redirect_users_to_dashboard($post_id, $values) {
 	$status = get_post_status($post_id);

@@ -29,6 +29,10 @@ form#submit-job-form {
     margin-top: 100px;
 }
 
+.job-manager-message a {
+    display: none;
+}
+
 .addLocation {
 	display: inline-block;
 	background-color: #13adba;
