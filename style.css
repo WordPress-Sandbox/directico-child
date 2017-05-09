@@ -28,11 +28,9 @@ specifically the 'Template: listable' line. */
 form#submit-job-form {
     margin-top: 100px;
 }
-
 .job-manager-message a {
     display: none;
 }
-
 .addLocation {
 	display: inline-block;
 	background-color: #13adba;
@@ -931,7 +929,7 @@ div.sd-social.sd-social > div.sd-content.sd-content ul li > a span {
 }
 .leaflet-bar.leaflet-bar:after {
 	width: 25px;
-}
+}.product .product__price {	background-color: #13adba;	padding: 5px 25px;	font-weight: 500;	-webkit-border-top-right-radius: 12px;	-moz-border-radius-topright: 12px;	border-top-right-radius: 12px;}
 @media screen and (max-width: 1280px) {
 }
 @media screen and (max-width: 1024px) {
