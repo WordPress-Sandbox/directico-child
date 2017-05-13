@@ -15,6 +15,12 @@
 require_once locate_template('inc/comments-ratings/hooks.php');
 require_once locate_template('inc/facetwp/filter.php');
 
+// remove extended location plugin default map init and load in assets/js/scripts.js after factwp loaded
+function wpdocs_dequeue_script() {
+	wp_dequeue_script('wpjmel-user-location');
+}
+add_action( 'wp_enqueue_scripts', 'wpdocs_dequeue_script', 100);
+
 /**
  * Setup Listable Child Theme's textdomain.
  *

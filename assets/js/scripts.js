@@ -1,8 +1,15 @@
 jQuery(function($){
-
+	
 	var i = 0;
 
 	if( $.fn.mapify ) {
+
+		// initiate wp manager extended location default map after loading facetwp to get rid off conflict 
+		$(document).on('facetwp-loaded', function() {
+			$( wpjmel.input ).mapify( wpjmel );
+		});
+
+		// load all extra locations on edit job edit page 
 		$.each(additionallocations, function(k, v){
 			if(v) {
 				wpjmelf = {};
@@ -18,6 +25,7 @@ jQuery(function($){
 		});
 	}
 
+	// add new locations 
 	$('.fieldset-job_location').after('<p class="addLocation"> Add another location</p>');
 	$('body').on('click', '.addLocation', function(){
 		$('.fieldset-job_location').append('<div class="field"><input type="text" class="input-text" name="additionallocation['+i+'][name]" id="job_location'+ i +'"><p class="remove_location">Remove Location</p></div>');
@@ -28,6 +36,7 @@ jQuery(function($){
 		i++;
 	});
 
+	// remove a location 
 	$('body').on('click', '.remove_location', function(){
 		$(this).parent().remove();
 	})
