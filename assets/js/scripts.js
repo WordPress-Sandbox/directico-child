@@ -1,4 +1,5 @@
 jQuery(function($){
+
 	var i = 0;
 
 	if( $.fn.mapify ) {

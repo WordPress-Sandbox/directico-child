@@ -21,6 +21,7 @@ $_instagram = get_post_meta( get_the_ID(), '_instagram', true);
 		display_average_listing_rating();
 	?>
 </div>
+
 <div style="padding: 0 0 36px 0;" class="single-meta">
 	<?php
 	if ( ! empty( $phone ) ) :

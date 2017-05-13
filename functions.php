@@ -13,6 +13,7 @@
 
 /* require files */
 require_once locate_template('inc/comments-ratings/hooks.php');
+require_once locate_template('inc/facetwp/filter.php');
 
 /**
  * Setup Listable Child Theme's textdomain.
