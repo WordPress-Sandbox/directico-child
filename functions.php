@@ -11,7 +11,8 @@
  */
 
 
-
+/* require files */
+require_once locate_template('inc/comments-ratings/hooks.php');
 
 /**
  * Setup Listable Child Theme's textdomain.
@@ -281,6 +282,8 @@ function localize_data() {
 		wp_localize_script( 'listable-scripts', 'additionallocations', $additionallocations );
 	}
 }
+
+
 
 /* remove map sidebar widget */
 function remove_calendar_widget() {
