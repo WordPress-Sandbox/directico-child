@@ -254,7 +254,7 @@ function redirect_users_to_dashboard($post_id, $values) {
 	if($status !== 'preview') {
 		echo '<script>
 		setTimeout(function(){
-			window.location = "' . get_permalink($dash) . '";
+			window.location = window.location.href;
 		}, 4000);
 		</script>';
 	}
