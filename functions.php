@@ -409,22 +409,14 @@ add_filter( 'submit_job_form_prefix_post_name_with_location', '__return_false' )
 
 add_filter('show_admin_bar', '__return_false');
 
-add_action( 'woocommerce_save_account_details', 'acf_form_head', 20 );
+
+// custom gravatar 
+// https://www.billerickson.net/wordpress-custom-avatar/
 
 function my_woocommerce_edit_account_form() {
-	?>
-	<fieldset>
-		<?php
-		if( current_user_can('upload_files') ) {
-			acf_form( array(
-				'post_id' => 'user_' . get_current_user_id(),
-				'form'    => false,
-				'field_groups' => array(12621),
-				'return' => false,
-			) );
-		}
-		?>
-	</fieldset>
-	<?php
+	if(class_exists('WP_User_Avatar_Setup')) {
+		echo do_shortcode('[avatar_upload] ');
+	}
 }
+
 add_action( 'woocommerce_edit_account_form', 'my_woocommerce_edit_account_form' );

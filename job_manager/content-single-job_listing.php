@@ -38,9 +38,6 @@ if ( class_exists( 'WP_Job_Manager_Claim_Listing' ) ) {
 	}
 } ?>
 
-
-<?php var_dump(get_post_meta($post->ID, '_pix_rating_calculated', true)); ?>
-
 <div class="single_job_listing"
 	data-latitude="<?php echo get_post_meta($post->ID, 'geolocation_lat', true); ?>"
 	data-longitude="<?php echo get_post_meta($post->ID, 'geolocation_long', true); ?>"
