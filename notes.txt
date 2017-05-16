@@ -1,2 +1,6 @@
-Map issue is at:  /plugins/facetwp/assets/fronts/front-facets.js - line 414
-can be fixed remove script file at /Users/azizultex/www/directico/wp-content/plugins/wp-job-manager-extended-location/includes/class-wpjmel-location-suggestion-setup.php
+First Location suggestion issue is fixed by initiating the map after facetwp load at directico-child/assets/js/scripts.js and removing js file at  - 7 
+
+AND 
+
+Removing the initiation at - /Users/azizultex/www/directico/wp-content/plugins/wp-job-manager-extended-location/assets/front/wpjmel-map.js 
+
