@@ -419,4 +419,4 @@ function my_woocommerce_edit_account_form() {
 	}
 }
 
-add_action( 'woocommerce_after_edit_account_form', 'my_woocommerce_edit_account_form' );
+add_action( 'woocommerce_before_edit_account_form', 'my_woocommerce_edit_account_form' );
