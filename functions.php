@@ -420,3 +420,15 @@ function my_woocommerce_edit_account_form() {
 }
 
 add_action( 'woocommerce_before_edit_account_form', 'my_woocommerce_edit_account_form' );
+
+
+function add_referrer_code(){
+	$site = get_bloginfo('url');
+	$prev_url = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+	$urlTo = $site . '/my-account/edit-account';
+	if( $prev_url == $urlTo ) : 
+		wp_safe_redirect( $urlTo );
+	endif;
+}
+
+add_action('wp_head', 'add_referrer_code');
