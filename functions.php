@@ -260,10 +260,10 @@ function redirect_users_to_dashboard($post_id, $values) {
 	$dash = get_option('job_manager_job_dashboard_page_id');
 	if($status !== 'preview') {
 		echo '<script>
-		setTimeout(function(){
-			window.location = window.location.href;
-		}, 4000);
-		</script>';
+				setTimeout(function(){
+					window.location = window.location.href;
+				}, 4000);
+				</script>';
 	}
 }
 
@@ -421,6 +421,13 @@ function my_woocommerce_edit_account_form() {
 
 add_action( 'woocommerce_before_edit_account_form', 'my_woocommerce_edit_account_form' );
 
+// redirect after profile udpate
+
+// function redirect_after_profile_update( $user_id ) {
+// 	wp_safe_redirect( 'https://google.com' );
+// 	exit();
+// }
+// add_action( 'woocommerce_save_account_details', 'redirect_after_profile_update', 10);
 
 function add_referrer_code(){
 	$site = get_bloginfo('url');
@@ -428,6 +435,11 @@ function add_referrer_code(){
 	$urlTo = $site . '/my-account/edit-account';
 	if( $prev_url == $urlTo ) : 
 		wp_safe_redirect( $urlTo );
+		// echo '<script>
+		// setTimeout(function(){
+		// 	window.location = '. $urlTo .';
+		// }, 100);
+		// </script>';
 	endif;
 }
 

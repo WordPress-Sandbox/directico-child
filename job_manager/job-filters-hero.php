@@ -6,8 +6,6 @@
  */
 ?>
 
-
-<h1>Hero </h1>
 <?php if ( listable_using_facetwp() ) :
 
 	$facets = listable_get_facets_by_area( 'front_page_hero' );

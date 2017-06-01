@@ -92,4 +92,7 @@ jQuery(function($){
 	if( document.body.className.match('tax-job_listing_category') ) {
 		$( ".scroll-back-to-top-wrapper" ).show();
 	}
+	if( $('#wcfm-main-contentainer').length ) {
+		 $( ".page-header" ).hide();
+	}
 });
