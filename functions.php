@@ -281,6 +281,9 @@ add_action( 'wp_enqueue_scripts', 'localize_data', 12 );
 function localize_data() {
 	wp_dequeue_script('listable-scripts');
 	wp_enqueue_script('listable-scripts');
+	wp_localize_script( 'listable-scripts', 'themeLocation', array(
+		'childTheme' => get_stylesheet_directory_uri()
+	) );
 	// we need to localize all data to make it work on explore page
 	if(is_page('explore') || is_tax()) {
 		$listings = get_posts("post_type=job_listing&posts_per_page=-1&post_status=publish");
@@ -443,4 +446,76 @@ function add_referrer_code(){
 	endif;
 }
 
-add_action('wp_head', 'add_referrer_code');
+// add_action('wp_head', 'add_referrer_code');
+
+
+/* edit profile */
+function update_user_profile_func(){
+
+	$message = __('Profile updated', 'listable-child-theme');
+	$status = 'SUCCESS';
+
+	$form_data = array();
+	$userId = get_current_user_id();
+    if (isset($_POST['form_data'])) {
+        parse_str($_POST['form_data'], $form_data);
+    }
+	$data = array_filter($form_data);
+
+	$password_current = $data['password_current'];
+	$password_1 = $data['password_1'];
+	$password_2 = $data['password_2'];
+
+    foreach ($data as $key => $value) {
+    	switch ($key) {
+    		case 'account_first_name':
+    			update_user_meta($userId, 'first_name', $value);
+    			break;    		
+    		case 'account_last_name':
+    			update_user_meta($userId, 'last_name', $value);
+    			break;
+    		    		
+    		case 'account_email':
+				wp_update_user( array( 'ID' => $userId, 'user_email' => $value ) );    			
+				break;    		
+    		
+    		default:
+    			// update_user_meta($userId, $key, $value);
+    			break;
+    	}
+    }
+
+    if(isset($password_current)) {
+    	$user = get_user_by( 'ID', $userId );
+	    if( $password_1 != $password_2 ) 
+	    {
+	        $message = __('Password didn\'t match', 'listable-child-theme');
+	        $status = 'FAILED';
+	    } 
+	    else if ( ( $status == 'SUCCESS' ) && 
+	        !wp_check_password( $password_current, $user->data->user_pass, $userId)) 
+	    {
+	        $message = __('Incorrect current password!', 'listable-child-theme');
+	        $status = 'FAILED';
+	    }
+
+	    if( ( $status == 'SUCCESS' ) && $password_1 ) {
+	        $user_id = wp_update_user( array( 'ID' => $userId, 'user_pass' => $password_1 ));
+	        if(is_wp_error($user_id)) {
+	            $message = __('Current password wrong!', 'listable-child-theme');
+	            $status = 'FAILED';
+	        } else {
+	            $message = __('Password changed successfully', 'listable-child-theme');
+	            $status = 'SUCCESS';
+	        }
+	    } elseif( $status == 'SUCCESS' ) {
+	    	$message = __('New password required!', 'listable-child-theme');
+	    	$status = 'FAILED';
+	    }	
+    }
+
+    echo json_encode(array( 'status' => $status, 'message' => $message, 'data' => $data));
+    die();
+}
+
+add_action('wp_ajax_update_user_profile', 'update_user_profile_func');

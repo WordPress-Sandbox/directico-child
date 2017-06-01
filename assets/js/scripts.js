@@ -40,6 +40,37 @@ jQuery(function($){
 	$('body').on('click', '.remove_location', function(){
 		$(this).parent().remove();
 	})
+
+
+
+	// ajaxify the profile udpate
+	$('form.woocommerce-EditAccountForm').submit(function(e){
+		e.preventDefault();
+		_this = $(this);
+		var stringData = _this.serialize();
+		$('.profileUpdateMessage').remove();
+		$.ajax({
+			type: 'POST',
+			url: wc_add_to_cart_params.ajax_url,
+			data: { action: 'update_user_profile', form_data: stringData },
+			dataType: 'json',
+			beforeSend: function(){
+				_this.append('<div class="profileUpdateMessage"><img src="' + themeLocation.childTheme +'/assets/img/ajax-loading.gif"></div>')
+			},
+			success: function(resp) {
+				console.log(resp);
+				let style = ( resp.status == 'FAILED' ) ? 'style="color:red"' : '';
+				$('.profileUpdateMessage').remove();
+				_this.append('<p class="profileUpdateMessage" '+ style + '>'+ resp.message +'</p>');
+			},
+			error: function( req, status, err ) {
+				$('.profileUpdateMessage').remove();
+				_this.append('<p class="profileUpdateMessage" '+ style + '>Something went wrong!</p>');
+			}
+		});
+	});
+
+
 	// START HIDE AND SHOW ELEMENTS DEPENDING ON WHETHER USER IS SCROLLING DOWN OR UP
 	var didScroll;
 	var lastScrollTop = 0;
